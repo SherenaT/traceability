@@ -10,10 +10,10 @@ const rollbar = new Rollbar({
 
 const app = express();
 app.use(express.json());
-app.use("/style", express.static("./public/styles.css"));
+app.use("/style", express.static("/public/styles.css"));
 
 app.get("/", (req, res) => {
-  res.sendFiles(path.join(__dirname, "/public/index.html"));
+  res.sendFile(path.join(__dirname, "/public/index.html"));
   rollbar.info("html file served successfully.");
 });
 
@@ -21,4 +21,4 @@ const port = process.env.PORT || 4000;
 
 app.use(rollbar.errorHandler());
 
-app.listen(port, () => console.log("Take us to warp ${port}!"));
+app.listen(port, () => console.log(`Take us to warp ${port}!`));
