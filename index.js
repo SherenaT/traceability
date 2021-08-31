@@ -20,30 +20,28 @@ app.get("/", (req, res) => {
   rollbar.info("html file served successfully.");
 });
 
-app.post("/api/wishlist", (req, res) => {
-  const { name, priority } = req.body;
+app.post("/api/student", (req, res) => {
+  let { name } = req.body;
+  name = name.trim();
 
-  let newItem = {
-    name,
-    priority,
-    id: globalId,
-  };
+  const index = students.findIndex((studentName) => studentName === name); //find index to loop over the name and see if students name already exist
 
-  wishlist.push(newItem);
-
-  res.status(200).send(wishlist);
-  globalId++;
+  if (index === -1 && name !== "") {
+    //if students name isnt in there are an empty string
+    students.push(name);
+    rollbar.log("Student add successfully", {
+      author: "Sherena",
+      type: "manual entry",
+    });
+    res.status(200).send(students);
+  } else if (name === "") {
+    rollbar.error("No given name");
+    res.status(400).send("must provide a name.");
+  } else {
+    rollbar.error("student already exists");
+    res.status(400).send("that student already exists");
+  }
 });
-app.delete("/api/wishlist/:id", (req, res) => {
-  const { id } = req.params;
-
-  const index = wishlist.findIndex((e) => e.id === +id);
-
-  wishlist.splice(index, 1);
-
-  res.status(200).send(wishlist);
-});
-
 const port = process.env.PORT || 4000;
 
 app.use(rollbar.errorHandler());
