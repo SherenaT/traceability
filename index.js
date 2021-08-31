@@ -8,7 +8,7 @@ const rollbar = new Rollbar({
   captureUnhandledRejections: true,
 });
 
-const customerName = [];
+const students = [];
 const app = express();
 app.use(express.json());
 app.use("/style", express.static("./public/styles.css"));
@@ -21,10 +21,10 @@ app.post("/api/waitlist", (req, res) => {
   let { name } = req.body;
   name = name.trim();
 
-  const index = customerName.findIndex((fullName) => fullName === name);
+  const index = students.findIndex((studentName) => studentName === name);
 
-  customerName.push(name);
-  rollbar.log("Check in add successfully", {
+  students.push(name);
+  rollbar.log("Student add successfully", {
     author: "Sherena",
     type: "manual entry",
   });
