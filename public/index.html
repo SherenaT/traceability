@@ -22,15 +22,12 @@
         <option value="Party of 6">Party of 6</option>
       </select>
       <button>Submit</button>
+      <section id="wishlist-section"></section>
  <script>
   const wishlistForm = document.getElementById("wishlist-form");
   const priority = document.getElementById("priority-dropdown");
   const itemName = document.getElementById("item-name");
 const wishlistSection = document.getElementById("wishlist-section");
-
-
-const express = require("express");
-const path = require("path");
 
 // makes the cards to display the items.
 const displayItems = (arr) => {
