@@ -35,7 +35,7 @@
         axios
           .post("/api/waitlist", {
             name: nameInput.value,
-            partyNum: numOfPpl.value,
+            partyNum: numOfPpl,
           })
           .then((res) => {
             container.innerHTML = "";
