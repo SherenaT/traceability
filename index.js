@@ -17,7 +17,7 @@ app.get("/", (req, res) => {
   rollbar.info("html file served successfully.");
 });
 
-app.post("/api/waitlist, (req, res) => {
+app.post("/api/waitlist", (req, res) => {
   let { name } = req.body;
   name = name.trim();
 
