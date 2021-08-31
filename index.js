@@ -1,20 +1,17 @@
 const express = require("express");
-const path = require("path");
+const path = require("path"); //variable we use to tell the deployment were going to use where we are at
 
 const Rollbar = require("rollbar");
 const rollbar = new Rollbar({
-  accessToken: "76d46bbbfa774de1ba1f1814e2fe2805",
+  accessToken: "dd7f418cfe194e95b84541d79bce2111",
   captureUncaught: true,
   captureUnhandledRejections: true,
 });
 
-const wishlist = [];
-globalId = 1;
-
+const students = [];
 const app = express();
 app.use(express.json());
-app.use("/style", express.static("/public/styles.css"));
-
+app.use("/style", express.static("./public/styles.css"));
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "/public/index.html"));
   rollbar.info("html file served successfully.");
@@ -24,10 +21,9 @@ app.post("/api/student", (req, res) => {
   let { name } = req.body;
   name = name.trim();
 
-  const index = students.findIndex((studentName) => studentName === name); //find index to loop over the name and see if students name already exist
+  const index = students.findIndex((studentName) => studentName === name);
 
   if (index === -1 && name !== "") {
-    //if students name isnt in there are an empty string
     students.push(name);
     rollbar.log("Student add successfully", {
       author: "Sherena",
@@ -42,8 +38,8 @@ app.post("/api/student", (req, res) => {
     res.status(400).send("that student already exists");
   }
 });
-const port = process.env.PORT || 4000;
+
+const port = process.env.PORT || 4545;
 
 app.use(rollbar.errorHandler());
-
-app.listen(port, () => console.log(`Take us to warp ${port}!`));
+app.listen(port, () => console.log("take us to warp ${port}!"));
