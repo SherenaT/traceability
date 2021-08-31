@@ -3,7 +3,7 @@ const path = require("path");
 
 const Rollbar = require("rollbar");
 const rollbar = new Rollbar({
-  accessToken: "",
+  accessToken: "76d46bbbfa774de1ba1f1814e2fe2805",
   captureUncaught: true,
   captureUnhandledRejections: true,
 });
@@ -17,7 +17,7 @@ app.get("/", (req, res) => {
   rollbar.info("html file served successfully.");
 });
 
-const port = process.env.PORT || 4545;
+const port = process.env.PORT || 4000;
 
 app.use(rollbar.errorHandler());
 
