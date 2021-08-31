@@ -48,7 +48,7 @@
           })
           .catch((err) => {
             nameInput.value = "";
-            numOfPpl.selectedIndex = 0;
+            // numOfPpl.selectedIndex = 0;
 
             const notif = document.createElement("aside");
             notif.innerHTML = `<p>${err.response.data}</p>
