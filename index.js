@@ -23,11 +23,20 @@ app.post("/api/waitlist", (req, res) => {
 
   const index = students.findIndex((studentName) => studentName === name);
 
-  students.push(name);
-  rollbar.log("Student add successfully", {
-    author: "Sherena",
-    type: "manual entry",
-  });
+  if (index === -1 && name !== "") {
+    students.push(name);
+    rollbar.log("Student add successfully", {
+      author: "Sherena",
+      type: "manual entry",
+    });
+    res.status(200).send(students);
+  } else if (name === "") {
+    rollbar.error("No given name");
+    res.status(400).send("must provide a name.");
+  } else {
+    rollbar.error("student already exists");
+    res.status(400).send("that student already exists");
+  }
 });
 
 const port = process.env.PORT || 4545;
