@@ -12,6 +12,14 @@
     <h3>Wait List:</h3>
     <form>
       <input type="text" placeholder="Enter name here" />
+      <select id="priority-dropdown">
+        <option>Enter Number of Party</option>
+        <option value="Party of 1">Party of 1</option>
+        <option value="Party of 2">Party of 2</option>
+        <option value="Party of 3">Party of 3</option>
+        <option value="Party of 4">Party of 4</option>
+        <option value="Party of 5">Party of 5</option>
+      </select>
       <button>Submit</button>
     </form>
     <section></section>
@@ -24,7 +32,7 @@
       function submitHandler(e) {
         e.preventDefault();
         axios
-          .post("/api/student", { name: nameInput.value })
+          .post("/api/waitlist", { name: nameInput.value })
           .then((res) => {
             container.innerHTML = "";
             nameInput.value = "";
