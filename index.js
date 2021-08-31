@@ -8,7 +8,7 @@ const rollbar = new Rollbar({
   captureUnhandledRejections: true,
 });
 
-const students = [];
+const fName = [];
 const app = express();
 app.use(express.json());
 app.use("/style", express.static("./public/styles.css"));
@@ -21,15 +21,15 @@ app.post("/api/waitlist", (req, res) => {
   let { name } = req.body;
   name = name.trim();
 
-  const index = students.findIndex((studentName) => studentName === name);
+  const index = fName.findIndex((fullName) => fullName === name);
 
   if (index === -1 && name !== "") {
-    students.push(name);
+    fName.push(name);
     rollbar.log("Student add successfully", {
       author: "Sherena",
       type: "manual entry",
     });
-    res.status(200).send(students);
+    res.status(200).send(fName);
   } else if (name === "") {
     rollbar.error("No given name");
     res.status(400).send("must provide a name.");

@@ -39,8 +39,8 @@
             container.innerHTML = "";
             nameInput.value = "";
 
-            res.data.forEach((studentName) => {
-              container.innerHTML += `<p>${studentName}</p>`;
+            res.data.forEach((fullName) => {
+              container.innerHTML += `<p>${fullName}</p>`;
             });
           })
           .catch((err) => {
