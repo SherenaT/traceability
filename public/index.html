@@ -28,7 +28,7 @@
       const addForm = document.querySelector("form");
       const nameInput = document.querySelector("input");
       const container = document.querySelector("section");
-      const numOfPpl = document.querySelector("#dropdown");
+      const numOfPpl = document.getElementById("#dropdown").value;
       //       numOfPpl.selectedIndex = 0;
 
       function submitHandler(e) {
@@ -44,7 +44,7 @@
             numOfPpl;
 
             res.data.forEach((fullName) => {
-              container.innerHTML += `<p>${fullName}, ${numOfPpl.value}</p>`;
+              container.innerHTML += `<p>${fullName}, ${numOfPpl}</p>`;
             });
           })
           .catch((err) => {
