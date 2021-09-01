@@ -36,15 +36,15 @@
         axios
           .post("/api/waitlist", {
             name: nameInput.value,
-            partyNum: numOfPpl.value,
+            partyNum: numOfPpl.selectedIndex,
           })
           .then((res) => {
             container.innerHTML = "";
             nameInput.value = "";
-            numOfPpl.value = "";
+            numOfPpl.selectedIndex = 0;
 
             res.data.forEach((fullName) => {
-              container.innerHTML += `<p>${fullName}, ${numOfPpl.value}</p>`;
+              container.innerHTML += `<p>${fullName}, ${numOfPpl}</p>`;
             });
           })
           .catch((err) => {
