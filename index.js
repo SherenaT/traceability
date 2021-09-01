@@ -25,17 +25,17 @@ app.post("/api/waitlist", (req, res) => {
 
   if (index === -1 && name !== "") {
     fName.push(name);
-    rollbar.log("Student add successfully", {
+    rollbar.log("check in added successfully", {
       author: "Sherena",
       type: "manual entry",
     });
     res.status(200).send(fName);
   } else if (name === "") {
-    rollbar.error("No given name");
-    res.status(400).send("must provide a name.");
+    rollbar.error("customer already checked in");
+    res.status(400).send("customer already checked in");
   } else {
-    rollbar.error("student already exists");
-    res.status(400).send("that student already exists");
+    rollbar.error("customer already checked in");
+    res.status(400).send("customer already checked in");
   }
 });
 

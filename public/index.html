@@ -28,23 +28,28 @@
       const addForm = document.querySelector("form");
       const nameInput = document.querySelector("input");
       const container = document.querySelector("section");
-      // const numOfPpl = document.querySelector("#dropdown");
+      const numOfPpl = document.querySelector("#dropdown");
       //       numOfPpl.selectedIndex = 0;
 
       function submitHandler(e) {
         e.preventDefault();
         axios
-          .post("/api/waitlist", { name: nameInput.value })
+          .post("/api/waitlist", {
+            name: nameInput.value,
+            partyNum: numOfPpl.value,
+          })
           .then((res) => {
             container.innerHTML = "";
             nameInput.value = "";
+            numOfPpl.value = "";
 
             res.data.forEach((fullName) => {
-              container.innerHTML += `<p>${fullName}</p>`;
+              container.innerHTML += `<p>${fullName}, ${numOfPpl.value}</p>`;
             });
           })
           .catch((err) => {
             nameInput.value = "";
+            numOfPpl.value = "";
 
             const notif = document.createElement("aside");
             notif.innerHTML = `<p>${err.response.data}</p>
