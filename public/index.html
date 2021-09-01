@@ -44,7 +44,7 @@
             numOfPpl;
 
             res.data.forEach((fullName) => {
-              container.innerHTML += `<p>${fullName}, ${numOfPpl}</p>`;
+              container.innerHTML += `<p>${fullName}, ${numOfPpl.value}</p>`;
             });
           })
           .catch((err) => {
