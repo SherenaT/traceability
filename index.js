@@ -18,13 +18,13 @@ app.get("/", (req, res) => {
 });
 
 app.post("/api/waitlist", (req, res) => {
-  let { name } = req.body;
+  let { name, numOfPpl } = req.body;
   name = name.trim();
 
   const index = fName.findIndex((fullName) => fullName === name);
 
   if (index === -1 && name !== "") {
-    fName.push(name);
+    fName.push(name, numOfPpl);
     rollbar.log("check in added successfully", {
       author: "Sherena",
       type: "manual entry",

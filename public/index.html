@@ -41,7 +41,7 @@
           .then((res) => {
             container.innerHTML = "";
             nameInput.value = "";
-            numOfPpl;
+            numOfPpl.value = "";
 
             res.data.forEach((fullName) => {
               container.innerHTML += `<p>${fullName}, ${numOfPpl}</p>`;
@@ -49,7 +49,7 @@
           })
           .catch((err) => {
             nameInput.value = "";
-            numOfPpl;
+            numOfPpl.value = "";
 
             const notif = document.createElement("aside");
             notif.innerHTML = `<p>${err.response.data}</p>
